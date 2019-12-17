@@ -129,7 +129,9 @@ Removing intermediate container 5563b230d422
 Successfully built 6fa1b5254c2e
 Successfully tagged image2:latest
 
+
 [root@ip-172-31-32-178 ~]# docker tag image2 tuttu/image:latest
+
 [root@ip-172-31-32-178 ~]# docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 tuttu/image         latest              6fa1b5254c2e        2 minutes ago       177MB
@@ -138,6 +140,7 @@ image               1                   b4930ba5b4a0        23 minutes ago      
 tuttu7/image        1                   b4930ba5b4a0        23 minutes ago      177MB
 tuttu7/image        latest              b4930ba5b4a0        23 minutes ago      177MB
 httpd               2.2                 e06c3dbbfe23        23 months ago       171MB
+
 
 [root@ip-172-31-32-178 ~]# docker push tuttu7/image:latest
 The push refers to repository [docker.io/tuttu7/image]
@@ -150,15 +153,20 @@ ab5efd5aec77: Pushed
 71436bd6f1c4: Pushed 
 4bcdffd70da2: Pushed 
 latest: digest: sha256:dcbdf82dc5332c8d6d94054110a39d6bf648d791d2f6e9c8b871a62c0e5d5448 size: 1991
+
 [root@ip-172-31-32-178 ~]# docker container ls
 CONTAINER ID        IMAGE               COMMAND              CREATED             STATUS              PORTS                NAMES
 46492b1c3554        image:1             "httpd-foreground"   27 minutes ago      Up 27 minutes       0.0.0.0:80->80/tcp   tuttu
+
 [root@ip-172-31-32-178 ~]# docker container stop tuttu
 tuttu
+
 [root@ip-172-31-32-178 ~]# docker container ls
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
 [root@ip-172-31-32-178 ~]# docker run -d --rm -p 80:80 --name tuttu tuttu7/image:latest
 e2d081bf0a36a81264d8154de6134a026c67c7ed2929b16c0d170ce53ded0747
+
 [root@ip-172-31-32-178 ~]# docker container ls
 CONTAINER ID        IMAGE                 COMMAND              CREATED             STATUS              PORTS                NAMES
 e2d081bf0a36        tuttu7/image:latest   "httpd-foreground"   4 seconds ago       Up 4 seconds        0.0.0.0:80->80/tcp   tuttu
